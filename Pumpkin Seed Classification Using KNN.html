@@ -375,14 +375,14 @@ Scatterplots are used for visualizations.</p>
 <pre><code>## package &#39;tidyverse&#39; successfully unpacked and MD5 sums checked
 ## 
 ## The downloaded binary packages are in
-##  C:\Users\Steve\AppData\Local\Temp\RtmpeYEI5O\downloaded_packages</code></pre>
+##  C:\Users\Steve\AppData\Local\Temp\RtmpQTTRME\downloaded_packages</code></pre>
 <pre class="r"><code>install.packages(&#39;ggplot2&#39;, repos = &quot;http://cran.us.r-project.org&quot;)</code></pre>
 <pre><code>## Installing package into &#39;C:/Users/Steve/AppData/Local/R/win-library/4.2&#39;
 ## (as &#39;lib&#39; is unspecified)</code></pre>
 <pre><code>## package &#39;ggplot2&#39; successfully unpacked and MD5 sums checked
 ## 
 ## The downloaded binary packages are in
-##  C:\Users\Steve\AppData\Local\Temp\RtmpeYEI5O\downloaded_packages</code></pre>
+##  C:\Users\Steve\AppData\Local\Temp\RtmpQTTRME\downloaded_packages</code></pre>
 <pre class="r"><code>install.packages(&#39;class&#39;, repos = &quot;http://cran.us.r-project.org&quot;)</code></pre>
 <pre><code>## Installing package into &#39;C:/Users/Steve/AppData/Local/R/win-library/4.2&#39;
 ## (as &#39;lib&#39; is unspecified)</code></pre>
@@ -395,7 +395,7 @@ Scatterplots are used for visualizations.</p>
 <pre><code>## Warning: restored &#39;class&#39;</code></pre>
 <pre><code>## 
 ## The downloaded binary packages are in
-##  C:\Users\Steve\AppData\Local\Temp\RtmpeYEI5O\downloaded_packages</code></pre>
+##  C:\Users\Steve\AppData\Local\Temp\RtmpQTTRME\downloaded_packages</code></pre>
 <pre class="r"><code>install.packages(&#39;readxl&#39;, repos = &quot;http://cran.us.r-project.org&quot;)</code></pre>
 <pre><code>## Installing package into &#39;C:/Users/Steve/AppData/Local/R/win-library/4.2&#39;
 ## (as &#39;lib&#39; is unspecified)</code></pre>
@@ -408,7 +408,7 @@ Scatterplots are used for visualizations.</p>
 <pre><code>## Warning: restored &#39;readxl&#39;</code></pre>
 <pre><code>## 
 ## The downloaded binary packages are in
-##  C:\Users\Steve\AppData\Local\Temp\RtmpeYEI5O\downloaded_packages</code></pre>
+##  C:\Users\Steve\AppData\Local\Temp\RtmpQTTRME\downloaded_packages</code></pre>
 <pre class="r"><code>install.packages(&quot;caret&quot;, repos = &quot;http://cran.us.r-project.org&quot;)</code></pre>
 <pre><code>## Installing package into &#39;C:/Users/Steve/AppData/Local/R/win-library/4.2&#39;
 ## (as &#39;lib&#39; is unspecified)</code></pre>
@@ -421,7 +421,7 @@ Scatterplots are used for visualizations.</p>
 <pre><code>## Warning: restored &#39;caret&#39;</code></pre>
 <pre><code>## 
 ## The downloaded binary packages are in
-##  C:\Users\Steve\AppData\Local\Temp\RtmpeYEI5O\downloaded_packages</code></pre>
+##  C:\Users\Steve\AppData\Local\Temp\RtmpQTTRME\downloaded_packages</code></pre>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## ── Attaching packages
 ## ───────────────────────────────────────
@@ -450,7 +450,7 @@ library(caret)</code></pre>
 <pre class="r"><code>pumpkin_data &lt;- read_xlsx(&#39;Pumpkin_Seeds_Dataset.xlsx&#39;)</code></pre>
 </div>
 <div id="str-summary-head" class="section level1">
-<h1>Str Summary, Head</h1>
+<h1>Str, Summary, Head</h1>
 <pre class="r"><code>str(pumpkin_data)</code></pre>
 <pre><code>## tibble [2,500 × 13] (S3: tbl_df/tbl/data.frame)
 ##  $ Area             : num [1:2500] 56276 76631 71623 66458 66107 ...
@@ -550,8 +550,8 @@ deviation)</h1>
 <h1>Use sample function for 80/20 split</h1>
 <pre class="r"><code>index &lt;- sample(2,nrow(Pumpkin_data1),replace = TRUE, prob=c(0.8,0.2))</code></pre>
 </div>
-<div id="split-into-training-and-testin-data" class="section level1">
-<h1>Split into Training and Testin Data</h1>
+<div id="split-into-training-and-testing-data" class="section level1">
+<h1>Split into Training and Testing Data</h1>
 <pre class="r"><code>training_data &lt;- Pumpkin_data1[index==1,]
 testing_data &lt;-Pumpkin_data1[index==2,]
 training_label &lt;- training_data %&gt;% select(13)
@@ -571,8 +571,8 @@ testing_data &lt;- testing_data %&gt;%  select(-13)</code></pre>
 <h1>Use KNN algorithm</h1>
 <pre class="r"><code>predictions &lt;- knn(train=training_data , test=testing_data , cl=as.matrix(training_label) , k=round(sqrt(nrow(training_data))))</code></pre>
 </div>
-<div id="calculating-accuracy-of-preductions-using-confusion-matrix" class="section level1">
-<h1>Calculating Accuracy of preductions using confusion matrix</h1>
+<div id="calculating-accuracy-of-predictions-using-confusion-matrix" class="section level1">
+<h1>Calculating Accuracy of predictions using confusion matrix</h1>
 </div>
 <div id="we-obtain-accuracy-of-90" class="section level1">
 <h1>We obtain accuracy of ~90%</h1>
