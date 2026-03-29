@@ -1,215 +1,809 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<style>
-    body {
-        background-color: #f2f2f2;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stephen Situ — Full Stack Data Professional</title>
+  <meta name="description" content="Data portfolio for Stephen Situ">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --surface2: #18181f;
+      --border: rgba(255,255,255,0.07);
+      --text: #e8e8f0;
+      --muted: #7070a0;
+      --accent: #7c6fff;
+      --accent2: #ff6b9d;
+      --accent3: #4dffc3;
+      --tag-bg: rgba(124,111,255,0.12);
     }
-</style>
-    <title>Stephen Situ Portfolio</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="data">
-    <meta name="description" content="Data portfolio for Stephen Situ">
-    <style>
-        body {
-            background-color:#f7f7f7;
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
-            color: #444;
-        }
-        h3 {
-            font-size: 24px;
-            font-weight: 600;
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
-        p {
-            margin-bottom: 10px;
-        }
-        a {
-            color: #0b73d9;
-            text-decoration: none;
-            border-bottom: 1px solid #0b73d9;
-            padding-bottom: 2px;
-        }
-        a:hover {
-            background-color: #0b73d9;
-            color: #fff;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            margin: 20px 0;
-        }
-    </style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE GRAIN ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.35;
+    }
+
+    /* ── GLOW ORBS ── */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.18;
+    }
+    .orb-1 { width: 600px; height: 600px; background: var(--accent); top: -200px; right: -200px; }
+    .orb-2 { width: 400px; height: 400px; background: var(--accent2); bottom: 10%; left: -150px; }
+    .orb-3 { width: 300px; height: 300px; background: var(--accent3); top: 50%; left: 50%; transform: translate(-50%,-50%); }
+
+    /* ── LAYOUT ── */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: 80px 0 60px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 60px;
+    }
+
+    .eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.1s forwards;
+    }
+
+    h1.name {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(42px, 8vw, 72px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.2s forwards;
+    }
+
+    h1.name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .tagline {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      color: var(--muted);
+      opacity: 0;
+      animation: fadeUp 0.6s 0.35s forwards;
+    }
+
+    .tagline span {
+      color: var(--accent3);
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      margin-bottom: 64px;
+      opacity: 0;
+      animation: fadeUp 0.6s forwards;
+    }
+
+    section:nth-child(2) { animation-delay: 0.4s; }
+    section:nth-child(3) { animation-delay: 0.5s; }
+    section:nth-child(4) { animation-delay: 0.6s; }
+    section:nth-child(5) { animation-delay: 0.65s; }
+    section:nth-child(6) { animation-delay: 0.7s; }
+    section:nth-child(7) { animation-delay: 0.75s; }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── CERT CATEGORIES ── */
+    .cert-category {
+      margin-bottom: 28px;
+    }
+
+    .cert-category-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cert-category-label .cat-icon {
+      font-size: 13px;
+    }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 8px;
+    }
+
+    .cert-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .cert-item:hover {
+      border-color: var(--accent);
+      background: var(--surface2);
+      transform: translateY(-2px);
+    }
+
+    .cert-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* per-category dot colors */
+    .cert-category[data-cat="cloud"]      .cert-dot { background: #ff9f43; }
+    .cert-category[data-cat="cloud"]      .cert-item:hover { border-color: #ff9f43; }
+    .cert-category[data-cat="data"]       .cert-dot { background: #54a0ff; }
+    .cert-category[data-cat="data"]       .cert-item:hover { border-color: #54a0ff; }
+    .cert-category[data-cat="ml"]         .cert-dot { background: #ff6b9d; }
+    .cert-category[data-cat="ml"]         .cert-item:hover { border-color: #ff6b9d; }
+    .cert-category[data-cat="devops"]     .cert-dot { background: #4dffc3; }
+    .cert-category[data-cat="devops"]     .cert-item:hover { border-color: #4dffc3; }
+    .cert-category[data-cat="analytics"]  .cert-dot { background: #a29bfe; }
+    .cert-category[data-cat="analytics"]  .cert-item:hover { border-color: #a29bfe; }
+
+    .cert-name {
+      font-size: 12.5px;
+      line-height: 1.4;
+      color: var(--text);
+    }
+
+    /* ── ACHIEVEMENT CARDS ── */
+    .achievement-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 12px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .achievement-card:hover {
+      border-color: var(--accent2);
+      transform: translateX(4px);
+    }
+
+    .achievement-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 16px;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .achievement-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .achievement-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--accent3);
+      text-decoration: none;
+      border: 1px solid rgba(77,255,195,0.2);
+      padding: 3px 10px;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .achievement-links a:hover {
+      background: rgba(77,255,195,0.12);
+    }
+
+    /* ── PROJECT CARDS ── */
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .project-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: border-color 0.2s, background 0.2s;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .project-row:hover {
+      border-color: rgba(124,111,255,0.5);
+      background: var(--surface2);
+    }
+
+    .project-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      flex-shrink: 0;
+      padding-top: 2px;
+      min-width: 28px;
+    }
+
+    .project-title {
+      font-size: 13.5px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .project-row:hover .project-title {
+      color: #fff;
+    }
+
+    .project-arrow {
+      margin-left: auto;
+      color: var(--muted);
+      font-size: 16px;
+      flex-shrink: 0;
+      padding-top: 1px;
+      transition: transform 0.2s, color 0.2s;
+    }
+
+    .project-row:hover .project-arrow {
+      transform: translateX(3px);
+      color: var(--accent);
+    }
+
+    /* multi-part projects */
+    .project-parts {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    .project-parts a {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid rgba(124,111,255,0.25);
+      padding: 2px 9px;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+
+    .project-parts a:hover {
+      background: rgba(124,111,255,0.12);
+    }
+
+    .project-block {
+      padding: 14px 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 8px;
+    }
+
+    .project-block:hover {
+      border-color: rgba(124,111,255,0.4);
+      background: var(--surface2);
+    }
+
+    .project-block .project-row-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    /* ── LEETCODE BADGE ── */
+    .leet-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 20px;
+      text-decoration: none;
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .leet-badge:hover {
+      border-color: #ffa116;
+      transform: translateY(-2px);
+    }
+
+    .leet-icon {
+      font-size: 18px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0 48px;
+      text-align: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .cert-grid { grid-template-columns: 1fr; }
+      header { padding: 50px 0 40px; }
+    }
+  </style>
 </head>
 <body>
- <h1>Stephen Situ - Full Stack Data Professional</h1>
- <h1>Certifications</h1>
-  <ul>
-     <li><a href="https://www.credly.com/badges/a4550ca6-6ae2-4e25-ac57-40a52b2c24b3/linked_in_profile" target="_blank">AWS Certified Solutions Architect – Associate</a></li>
-      <li><a href="https://www.credly.com/badges/8b4a7d65-5e23-47e7-bf40-6152d023edb3" target="_blank">AWS Certified Machine Learning – Specialty</a></li>
-      <li><a href="https://learn.microsoft.com/api/credentials/share/en-us/StephenSitu-0480/2A95E224EB308BDC?sharingId=4F7A106EF0E26D0" target="_blank">Microsoft Certified: Azure Data Engineer Associate</a></li>
-        <li><a href="https://learn.microsoft.com/api/credentials/share/en-us/StephenSitu-0480/C394177B0C253335?sharingId=4F7A106EF0E26D0" target="_blank">Microsoft Certified: Fabric Analytics Engineer Associate</a></li>
-      <li><a href="https://learn.microsoft.com/en-us/users/stephensitu-0480/credentials/45d6c083af6f151d" target="_blank">Microsoft Certified: Fabric Data Engineer Associate</a></li>
-      <li><a href="https://credentials.databricks.com/57893864-8798-4819-8a20-eeea0ac44adf#gs.3h7tso" target="_blank">Databricks Certified Data Engineer Professional</a></li>
-      <li><a href="https://credentials.databricks.com/2cd6e954-1e81-4448-af19-c59037903bb6#acc.ZocXFAr9" target="_blank">Databricks Certified Machine Learning Professional</a></li>
-      <li><a href="https://credentials.databricks.com/6ca4e098-a55b-4c6e-a93a-34a0b4c64a0c" target="_blank">Databricks Certified Associate Developer for Apache Spark 3.0</a></li>
-      <li><a href="https://credentials.databricks.com/15ba0dc7-066e-4759-8023-90d0dc481a38#acc.GERNjSyQ" target="_blank">Databricks Certified Generative AI Engineer Associate</a></li>
-    <li><a href="https://www.credential.net/2c83d49b-7cbc-446c-b488-4c39248e3acf#gs.4z09p8" target="_blank">Snowflake SnowPro Core Certification</a></li>
-        <li><a href="https://www.credly.com/badges/a835e026-d756-4a58-8be4-54dfad2992a4" target="_blank">Astronomer Certification for Apache Airflow Fundamentals</a></li>
-        <li><a href="https://www.credly.com/badges/ffd50b58-e3c6-4b7a-993d-29d184a46034" target="_blank">Astronomer Certification DAG Authoring for Apache Airflow</a></li>
-      <li><a href="https://www.credly.com/badges/87aaa9c5-e3d9-41e2-b4b1-25992b4ce5a5"target="_blank">GitHub Actions Certification</a></li>
-      <li><a href="https://www.credential.net/10f8e17c-b99f-47e9-bf38-4a2a181fb9e4" target="_blank">Tensorflow Developer Certificate</a></li>
-    <li><a href="https://www.credly.com/badges/b50ccb71-a71d-4c34-8b6b-73944da4ee76" target="_blank">HashiCorp Certified: Terraform Associate (003)</a></li>
-    <li><a href="https://www.coursera.org/account/accomplishments/specialization/XLYQW22GQF69" target="_blank">IBM Data Engineering Foundations</a></li>
-    <li><a href="https://www.coursera.org/account/accomplishments/professional-cert/2QJHUU84LRBP" target="_blank">Google Data Analytics Professional Certificate</a></li>
-    <li><a href="https://www.coursera.org/account/accomplishments/professional-cert/A5VSGKLN2VCW" target="_blank">Google Advanced Data Analytics Professional Certificate</a></li>
-    <li><a href="certificate-636243780.jpg">Foundation: Introduction to LangGraph</a></li>
-  </ul>
-   <h1>Leetcode Profile</h1>
-    <li><a href="https://leetcode.com/u/wssitu/" target="_blank">Leetcode Profile</a></li>
-    
-  <h1>Achievements</h1>
-  <ul>
-    <li>2023 Zeroing Methane Emissions Datathon - 3rd place CDC-Climate Data Catalysts</li>
-    <ul>
-      <li>Website: <a href="https://www.speuntapped.com/">https://www.speuntapped.com/</a></li>
-      <li>Video: <a href="https://www.youtube.com/watch?v=4DZn6ajLAIk&ab_channel=UntappedEnergy">https://www.youtube.com/watch?v=4DZn6ajLAIk&ab_channel=UntappedEnergy</a></li>
-    </ul>
-    <li>2023 YYC HACKS CALGARY'S BIGGEST HACKATHON - 2nd place YYC Winter</li>
-    <ul>
-      <li>Website: <a href="https://www.yychacks.ca/">https://www.yychacks.ca/</a></li>
-      <li>Project: <a href="https://yycwinter.com/">https://yycwinter.com/</a></li>
-    </ul>
-        <li>2024 YYC HACKS CALGARY'S BIGGEST HACKATHON</li>
-    <ul>
-      <li>Website: <a href="https://www.yychacks.ca/">https://www.yychacks.ca/</a></li>
-      <li>Project: <a href="https://streamlit-app-gjzn.onrender.com/">Streamlit Dashboard for Calgary Newcomer Statistics</a></li>
-      <li>Code: <a href="https://github.com/ktgster/yychacks_2024">Github</a></li>
-    </ul>
-  </ul>
-    
-  <h3>Generative AI / LLM</h3>
-  <p>
-    <a href="Langgraph.html" title="Learn more about AI Project 1: Using Langgraph for Agentic Graph Workflows">
-      AI Project 1 – Using Langgraph to Create Agentic Graph Workflows for Text Classification and Sentiment Analysis
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <header>
+    <p class="eyebrow">Portfolio · Calgary, AB</p>
+    <h1 class="name">Stephen <em>Situ</em></h1>
+    <p class="tagline">Full Stack Data Professional &nbsp;·&nbsp; <span>Data Engineering</span> · <span>ML/AI</span> · <span>Cloud</span> · <span>DevOps</span></p>
+  </header>
+
+  <!-- CERTIFICATIONS -->
+  <section>
+    <p class="section-label">Certifications</p>
+
+    <!-- Cloud -->
+    <div class="cert-category" data-cat="cloud">
+      <p class="cert-category-label"><span class="cat-icon">☁</span> Cloud</p>
+      <div class="cert-grid">
+        <a class="cert-item" href="https://www.credly.com/badges/a4550ca6-6ae2-4e25-ac57-40a52b2c24b3/linked_in_profile" target="_blank">
+          <span class="cert-dot"></span><span class="cert-name">AWS Solutions Architect – Associate</span>
+        </a>
+        <a class="cert-item" href="https://www.credly.com/badges/8b4a7d65-5e23-47e7-bf40-6152d023edb3" target="_blank">
+          <span class="cert-dot"></span><span class="cert-name">AWS Machine Learning – Specialty</span>
+        </a>
+        <a class="cert-item" href="https://learn.microsoft.com/api/credentials/share/en-us/StephenSitu-0480/2A95E224EB308BDC?sharingId=4F7A106EF0E26D0" target="_blank">
+          <span class="cert-dot"></span><span class="cert-name">Azure Data Engineer Associate</span>
+        </a>
+        <a class="cert-item" href="https://learn.microsoft.com/api/credentials/share/en-us/StephenSitu-0480/C394177B0C253335?sharingId=4F7A106EF0E26D0" target="_blank">
+          <span class="cert-dot"></span><span class="cert-name">Microsoft Fabric Analytics Engineer</span>
+        </a>
+        <a class="cert-item" href="https://learn.microsoft.com/en-us/users/stephensitu-0480/credentials/45d6c083af6f151d" target="_blank">
+          <span class="cert-dot"></span><span class="cert-name">Microsoft Fabric Data Engineer</span>
+        </a>
+        <a class="cert-item" href="https://www.credential.net/2c83d49b-7cbc-446c-b488-4c39248e3acf#gs.4z09p8" target="_blank">
+          <span class="cert-dot"></span><span class="cert-name">Snowflake SnowPro Core</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Data Engineering -->
+    <div class="cert-category" data-cat="data">
+      <p class="cert-category-label"><span class="cat-icon">⚙</span> Data Engineering</p>
+      <div class="cert-grid">
+        <a class="cert-item" href="https://credentials.databricks.com/57893864-8798-4819-8a20-eeea0ac44adf#gs.3h7tso" target="_blank">
+          <span class="cert-dot"></span><span class="cert-name">Databricks Data Engineer Professional</span>
+        </a>
+        <a class="cert-item" href="https://credentials.databricks.com/6ca4e098-a55b-4c6e-a93a-34a0b4c64a0c" target="_blank">
+          <span class="cert-dot"></span><span class="cert-name">Databricks Apache Spark 3.0 Developer</span>
+        </a>
+        <a class="cert-item" href="https://www.credly.com/badges/a835e026-d756-4a58-8be4-54dfad2992a4" target="_blank">
+          <span class="cert-dot"></span><span class="cert-name">Apache Airflow Fundamentals</span>
+        </a>
+        <a class="cert-item" href="https://www.credly.com/badges/ffd50b58-e3c6-4b7a-993d-29d184a46034" target="_blank">
+          <span class="cert-dot"></span><span class="cert-name">Airflow DAG Authoring</span>
+        </a>
+        <a class="cert-item" href="https://www.coursera.org/account/accomplishments/specialization/XLYQW22GQF69" target="_blank">
+          <span class="cert-dot"></span><span class="cert-name">IBM Data Engineering Foundations</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ML & AI -->
+    <div class="cert-category" data-cat="ml">
+      <p class="cert-category-label"><span class="cat-icon">◈</span> Machine Learning & AI</p>
+      <div class="cert-grid">
+        <a class="cert-item" href="https://credentials.databricks.com/2cd6e954-1e81-4448-af19-c59037903bb6#acc.ZocXFAr9" target="_blank">
+          <span class="cert-dot"></span><span class="cert-name">Databricks ML Professional</span>
+        </a>
+        <a class="cert-item" href="https://credentials.databricks.com/15ba0dc7-066e-4759-8023-90d0dc481a38#acc.GERNjSyQ" target="_blank">
+          <span class="cert-dot"></span><span class="cert-name">Databricks Generative AI Engineer</span>
+        </a>
+        <a class="cert-item" href="https://www.credential.net/10f8e17c-b99f-47e9-bf38-4a2a181fb9e4" target="_blank">
+          <span class="cert-dot"></span><span class="cert-name">TensorFlow Developer Certificate</span>
+        </a>
+        <a class="cert-item" href="certificate-636243780.jpg">
+          <span class="cert-dot"></span><span class="cert-name">LangGraph Foundations</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- DevOps & Infrastructure -->
+    <div class="cert-category" data-cat="devops">
+      <p class="cert-category-label"><span class="cat-icon">⬡</span> DevOps & Infrastructure</p>
+      <div class="cert-grid">
+        <a class="cert-item" href="https://www.credly.com/badges/87aaa9c5-e3d9-41e2-b4b1-25992b4ce5a5" target="_blank">
+          <span class="cert-dot"></span><span class="cert-name">GitHub Actions</span>
+        </a>
+        <a class="cert-item" href="https://www.credly.com/badges/b50ccb71-a71d-4c34-8b6b-73944da4ee76" target="_blank">
+          <span class="cert-dot"></span><span class="cert-name">HashiCorp Terraform Associate (003)</span>
+        </a>
+        <a class="cert-item" href="https://www.credly.com/badges/83534156-1873-43c2-a307-26e6156d75f3" target="_blank">
+          <span class="cert-dot"></span><span class="cert-name">CKAD: Certified Kubernetes Application Developer</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Analytics -->
+    <div class="cert-category" data-cat="analytics">
+      <p class="cert-category-label"><span class="cat-icon">◉</span> Analytics</p>
+      <div class="cert-grid">
+        <a class="cert-item" href="https://www.coursera.org/account/accomplishments/professional-cert/2QJHUU84LRBP" target="_blank">
+          <span class="cert-dot"></span><span class="cert-name">Google Data Analytics Professional</span>
+        </a>
+        <a class="cert-item" href="https://www.coursera.org/account/accomplishments/professional-cert/A5VSGKLN2VCW" target="_blank">
+          <span class="cert-dot"></span><span class="cert-name">Google Advanced Data Analytics</span>
+        </a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section>
+    <p class="section-label">Achievements</p>
+
+    <div class="achievement-card">
+      <p class="achievement-title">🥉 2023 Zeroing Methane Emissions Datathon — 3rd Place</p>
+      <p style="font-size:13px;color:var(--muted);">CDC-Climate Data Catalysts</p>
+      <div class="achievement-links">
+        <a href="https://www.speuntapped.com/" target="_blank">Website ↗</a>
+        <a href="https://www.youtube.com/watch?v=4DZn6ajLAIk&ab_channel=UntappedEnergy" target="_blank">Video ↗</a>
+      </div>
+    </div>
+
+    <div class="achievement-card">
+      <p class="achievement-title">🥈 2023 YYC Hacks Calgary — 2nd Place</p>
+      <p style="font-size:13px;color:var(--muted);">YYC Winter Project</p>
+      <div class="achievement-links">
+        <a href="https://www.yychacks.ca/" target="_blank">Event ↗</a>
+        <a href="https://yycwinter.com/" target="_blank">Project ↗</a>
+      </div>
+    </div>
+
+    <div class="achievement-card">
+      <p class="achievement-title">🏆 2024 YYC Hacks Calgary</p>
+      <p style="font-size:13px;color:var(--muted);">Calgary Newcomer Statistics Dashboard</p>
+      <div class="achievement-links">
+        <a href="https://www.yychacks.ca/" target="_blank">Event ↗</a>
+        <a href="https://streamlit-app-gjzn.onrender.com/" target="_blank">Live App ↗</a>
+        <a href="https://github.com/ktgster/yychacks_2024" target="_blank">GitHub ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEETCODE -->
+  <section>
+    <p class="section-label">Competitive Programming</p>
+    <a class="leet-badge" href="https://leetcode.com/u/wssitu/" target="_blank">
+      <span class="leet-icon">⚡</span>
+      <span>LeetCode Profile — wssitu</span>
+      <span style="margin-left:6px;color:#ffa116">↗</span>
     </a>
-  </p>
-  <p>
-    <a href="Similarity_Search_Demo.html" title="Learn more about AI Project 2: Creating a Local RAG (Retrieval Augmented Generation) System with PyTorch and Ollama">
-      AI Project 2 – Creating a Local RAG (Retrieval Augmented Generation) System with PyTorch and Ollama
-    </a>
-  </p>
-<p>
-    <a href="https://github.com/ktgster/mcp_math_server" title="Learn more about AI Project 3: Creating a Local RAG (Retrieval Augmented Generation) System with PyTorch and Ollama">
-      AI Project 3 – Creating a Math MCP server and ReAct agent to demonstrate tool decoupling
-    </a>
-  </p>
+  </section>
 
+  <!-- GENERATIVE AI -->
+  <section>
+    <p class="section-label">Generative AI / LLM</p>
+    <div class="project-list">
+      <a class="project-row" href="Langgraph.html">
+        <span class="project-num">01</span>
+        <span class="project-title">Using LangGraph to Create Agentic Graph Workflows for Text Classification & Sentiment Analysis</span>
+        <span class="project-arrow">→</span>
+      </a>
+      <a class="project-row" href="Similarity_Search_Demo.html">
+        <span class="project-num">02</span>
+        <span class="project-title">Local RAG System with PyTorch and Ollama</span>
+        <span class="project-arrow">→</span>
+      </a>
+      <a class="project-row" href="https://github.com/ktgster/mcp_math_server" target="_blank">
+        <span class="project-num">03</span>
+        <span class="project-title">Math MCP Server & ReAct Agent — Demonstrating Tool Decoupling</span>
+        <span class="project-arrow">→</span>
+      </a>
+    </div>
+  </section>
 
-    
-<h3>Full Stack Development</h3>
+  <!-- FULL STACK -->
+  <section>
+    <p class="section-label">Full Stack Development</p>
+    <div class="project-list">
+      <div class="project-block">
+        <div class="project-row-inner">
+          <span class="project-num">01</span>
+          <div>
+            <div class="project-title">Calculator App — React frontend + Java Spring Boot backend</div>
+            <div class="project-parts">
+              <a href="https://github.com/ktgster/calculator_front" target="_blank">Frontend Repo</a>
+              <a href="https://github.com/ktgster/calculator_app" target="_blank">Backend Repo</a>
+              <a href="https://calculator-front-2md1.onrender.com/" target="_blank">Live Site</a>
+              <a href="https://calculator-app-6z3a.onrender.com/swagger-ui/index.html" target="_blank">Swagger UI</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="project-row" href="https://github.com/ktgster/go_linear_vs_concurrent" target="_blank">
+        <span class="project-num">02</span>
+        <span class="project-title">Golang Linear vs Concurrent Programming Benchmark</span>
+        <span class="project-arrow">→</span>
+      </a>
+    </div>
+  </section>
 
-<p>
-  Full Stack Project 1 – Calculator App with a JavaScript/React front end and a Java Spring Boot back end.
-  Below are the relevant repositories and live links:
-</p>
+  <!-- DATA ANALYTICS / ML -->
+  <section>
+    <p class="section-label">Data Analytics / Data Science / Machine Learning</p>
+    <div class="project-list">
+      <a class="project-row" href="videogames.html"><span class="project-num">01</span><span class="project-title">Video Game Sales Analysis</span><span class="project-arrow">→</span></a>
+      <a class="project-row" href="Gender Prediction Using Body Measurements with Random forest algorithm.html"><span class="project-num">02</span><span class="project-title">Gender Prediction Using Body Measurements — Random Forest</span><span class="project-arrow">→</span></a>
+      <a class="project-row" href="Basic-Income.html"><span class="project-num">03</span><span class="project-title">Predicting Voting Behaviour Using XGBoost</span><span class="project-arrow">→</span></a>
+      <a class="project-row" href="Python Data Cleaning.html"><span class="project-num">04</span><span class="project-title">Python Data Cleaning — Car Sales Data</span><span class="project-arrow">→</span></a>
+      <a class="project-row" href="Visualizing Canada Election Data.html"><span class="project-num">05</span><span class="project-title">Visualizing Canada Election Data</span><span class="project-arrow">→</span></a>
+      <a class="project-row" href="Air Quality Regression.html"><span class="project-num">06</span><span class="project-title">Deep Learning Regression for Air Quality — TensorFlow/Keras</span><span class="project-arrow">→</span></a>
+      <a class="project-row" href="Time-Series-Forecasting-Commodities-good.html"><span class="project-num">07</span><span class="project-title">Commodity Price Time Series — Seasonal Naive, ETS & ARIMA</span><span class="project-arrow">→</span></a>
+      <a class="project-row" href="Principal Component Analysis on Credit Data.html"><span class="project-num">08</span><span class="project-title">PCA on Credit Card Transaction Data</span><span class="project-arrow">→</span></a>
+      <a class="project-row" href="SQL Querying Practice on Retail Data.html"><span class="project-num">09</span><span class="project-title">SQL Querying Practice on Retail Sales Data</span><span class="project-arrow">→</span></a>
+      <a class="project-row" href="Financial Information Dashboard.html"><span class="project-num">10</span><span class="project-title">Power BI Dashboard on Financial Data</span><span class="project-arrow">→</span></a>
+      <a class="project-row" href="AB Testing Marking-Campaign.html"><span class="project-num">11</span><span class="project-title">A/B Testing & Hypothesis Testing — Fast Food Marketing Campaign</span><span class="project-arrow">→</span></a>
+      <a class="project-row" href="K-means Clustering on Wine Data.html"><span class="project-num">12</span><span class="project-title">K-Means Clustering on Wine Data</span><span class="project-arrow">→</span></a>
+      <a class="project-row" href="Using-Twitter-API-to-find-Word-Frequency-and-create-a-Word-Cloud.html"><span class="project-num">13</span><span class="project-title">Twitter API — Word Frequency & Word Cloud</span><span class="project-arrow">→</span></a>
+      <a class="project-row" href="Cohort Analysis and Customer Churn On Online Retail Sales Data.html"><span class="project-num">14</span><span class="project-title">Cohort Analysis & Customer Churn — Online Retail</span><span class="project-arrow">→</span></a>
+      <a class="project-row" href="Monte Carlo Simulation for Tesla and Apple Stock.html"><span class="project-num">15</span><span class="project-title">Monte Carlo Simulation — Tesla & Apple Stock Price</span><span class="project-arrow">→</span></a>
+      <a class="project-row" href="Pumpkin-Seed-Classification-Using-LDA,-QDA,-SVM.html"><span class="project-num">16</span><span class="project-title">Pumpkin Seed Classification — LDA, QDA, SVM</span><span class="project-arrow">→</span></a>
+      <a class="project-row" href="Pumpkin Seed Classification Using KNN.html"><span class="project-num">17</span><span class="project-title">Pumpkin Seed Classification — KNN</span><span class="project-arrow">→</span></a>
+      <a class="project-row" href="Logistic Regression for Binary Classification of Breast Cancer Diagnosis.html"><span class="project-num">18</span><span class="project-title">Logistic Regression — Breast Cancer Diagnosis</span><span class="project-arrow">→</span></a>
 
-<ul>
-  <li>
-    Frontend Repository:
-    <a href="https://github.com/ktgster/calculator_front" target="_blank">View Repository</a>
-  </li>
-  <li>
-    Backend Repository:
-    <a href="https://github.com/ktgster/calculator_app" target="_blank">View Repository</a>
-  </li>
-  <li>
-    Frontend (Static Website):
-    <a href="https://calculator-front-2md1.onrender.com/" target="_blank">Visit Site</a>
-  </li>
-  <li>
-    Backend Swagger UI:
-    <a href="https://calculator-app-6z3a.onrender.com/swagger-ui/index.html" target="_blank">Access Swagger UI</a>
-  </li>
-</ul>
-<p><a href="https://github.com/ktgster/go_linear_vs_concurrent">Full Stack Project 2 - Golang Linear vs Concurrent Programming Benchmark</a></p>
-    
-<h3>Data Analytics/Data Science/Machine Learning</h3>
-<p><a href="videogames.html">Data Project 1 - Video Game Sales</a></p>
-<p><a href="Gender Prediction Using Body Measurements with Random forest algorithm.html">Data Project 2 - Gender Prediction Using Body Measurements with Random forest algorithm</a></p>
-<p><a href="Basic-Income.html">Data Project 3 - Predicting Voting Behaviour Using XGBoost</a></p>
-<p><a href="Python Data Cleaning.html">Data Project 4 - Python Data Cleaning Car Sales Data</a></p>
-<p><a href="Visualizing Canada Election Data.html">Data Project 5 - Visualizing Canada Election Data</a></p>
-<p><a href="Air Quality Regression.html">Data Project 6 - Using Tensorflow/Keras to implement Deep Learning/Neural Network Regression model for Air Quality</a></p>
-<p><a href="Time-Series-Forecasting-Commodities-good.html">Data Project 7 - Commodity Price Time Series Analysis, Correlation, and Forecasting using Seasonal Naive method, ETS method, and Arima Method</a></p> 
-<p><a href="Principal Component Analysis on Credit Data.html">Data Project 8 - PCA (Principal Component Analysis) on Credit Card Transaction Data</a></p>
-<p><a href="SQL Querying Practice on Retail Data.html">Data Project 9 - SQL Querying Practice on Retail Sales Data</a></p>
-<p><a href="Financial Information Dashboard.html">Data Project 10 - Power BI Dashboard on Financial Data</a></p>
-<p><a href="AB Testing Marking-Campaign.html">Data Project 11 - A/B Testing & Hypothesis Testing on Fast Food Marketing Campaign</a></p>
-<p><a href="K-means Clustering on Wine Data.html">Data Project 12 - K-means Clustering on Wine Data</a></p>
-<p><a href="Using-Twitter-API-to-find-Word-Frequency-and-create-a-Word-Cloud.html">Data Project 13 - Using Twitter API to find Word Frequency and create a Word Cloud</a></p>
-<p><a href="Cohort Analysis and Customer Churn On Online Retail Sales Data.html">Data Project 14 - Cohort Analysis and Customer Churn On Online Retail Sales Data</a></p>
-<p><a href="Monte Carlo Simulation for Tesla and Apple Stock.html">Data Project 15 - Monte Carlo Simulation for Tesla and Apple Stock Price</a></p>
-<p><a href="Pumpkin-Seed-Classification-Using-LDA,-QDA,-SVM.html">Data Project 16 - Pumpkin Seed Classification Using LDA (Linear Discriminant Analysis), QDA (Quadratic Discriminant Analysis), and SVM (Support Vector Machine)</a></p>
-<p><a href="Pumpkin Seed Classification Using KNN.html">Data Project 17 - Pumpkin Seed Classification Using KNN (K-Nearest Neighbors)</a></p>
-<p><a href="Logistic Regression for Binary Classification of Breast Cancer Diagnosis.html">Data Project 18 - Logistic Regression for Binary Classification of Breast Cancer Diagnosis</a></p>
-<p><a>Data Project 19 - IBM Cognos Analytics Dashboard for Retail Sales</a>
-<a href="IBM-cognos 1.png">Part 1</a> <a href="IBM-cognos 2.png">Part 2</a> <a href="IBM-cognos 3.png">Part 3</a></p>
-<p><a>Data Project 20 - Animal Multi-class Classification Neural Network Using Tensorflow and TensorBoard</a>
-<a href="Animal Multi-class Classification Neural Network Using Tensorflow and TensorBoard.html">Part 1</a>    
-<a href="tb1.png">Part 2</a>  
-<a href="tb2.png">Part 3</a> 
-<a href="tb3.png">Part 4</a></p>
-<p><a>Data Project 21 - Investigating Tweet Data NLP (Natural Language Processing) models for classification using Naive Bayes, Simple Dense NN, LSTM NN, GRU NN, Bidirectional NN, Conv 1D NN, and TF Hub models along with speed/score tradeoff and visualizations in Tensorflow Embedding Projector</a>
-<a href="NLP Multiclass Classification.html">Part 1</a>    
-<a href="Tensorflow projector.png">Part 2</a> </p>
-<p><a href="Time series.html">Data Project 22 - Time Series Modeling on Temperature and Climate Data including Correlation, Windows, and Horizons, FF NNs, LSTM NNs, Conv1D NNs, and Univariate/Multivariate Modeling</a></p>
-<p><a href="Emissions Regression Model Development v3.html">Data Project 23 - Methane Emissions Computer Vision Model using Convolutional Neural Network - Part of 2023 Zeroing Methane Emissions Datathon</a></p>
+      <!-- Multi-part: IBM Cognos -->
+      <div class="project-block">
+        <div class="project-row-inner">
+          <span class="project-num">19</span>
+          <div>
+            <div class="project-title">IBM Cognos Analytics Dashboard for Retail Sales</div>
+            <div class="project-parts">
+              <a href="IBM-cognos 1.png">Part 1</a>
+              <a href="IBM-cognos 2.png">Part 2</a>
+              <a href="IBM-cognos 3.png">Part 3</a>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<h3>Data Engineering</h3>
-<p><a href="Webscraping Real Estate Data with Beautiful Soup.html">Data Project 1 - Webscraping Real Estate Data with Python BeautifulSoup Library</a></p>
-<p><a href="Python ETL script.html">Data Project 2 - Conducting ETL (Extract-Transform-Load) Process on csv, json, and xml files</a></p>
-<p><a href="Working with Apache Spark DataFrames using PySpark and Spark SQL.html">Data Project 3 - Working with Apache Spark DataFrames using PySpark and Spark SQL</a></p>
-<p><a href="Using Sci-Kit Learn Pipelines and Transformers.html">Data Project 4 - Using Sci-Kit Learn Pipelines and Transformers for Data pre-processing</a></p>
-<p><a href="Advanced SQL Querying on IBM DB2 DataBase.html">Data Project 5 - Advanced SQL Querying on IBM DB2 DataBase with SQLAlchemy</a></p>
-<p><a href="Using CRUD Operations on a MongoDB Database with pymongo in Python.html">Data Project 6 - Using CRUD Operations on a MongoDB Database with pymongo in Python</a></p>
-<p><a href="Using CRUD Operations on a DataStax Astra Cassandra based database in Python.html">Data Project 7 - Using CRUD Operations on a DataStax Astra Cassandra based database in Python</a></p>
-<p><a>Data Project 8 - Scheduling Cronjobs with Linux Shell & Bash to automate python scripts</a>
-<a href="Scheduling Cronjobs with Linux Shell & Bash to automate python scripts.html">Part 1</a> <a href="cron.png">Part 2</a> <a href="stock2.png">Part 3</a>
-<a href="stock3.png">Part 4</a> <a href="stock4.png">Part 5</a></p>
-<p><a>Data Project 9 - Using Apache Airflow for Data Orchestration and scheduling/monitoring workflows</a>
-<a href="Airflow1.png">Part 1</a>    
-<a href="Airflow2.png">Part 2</a>  
-<a href="Airflow3.png">Part 3</a>  
-<a href="Airflow4.png">Part 4</a> 
-<a href="Airflow5.png">Part 5</a> 
-<a href="Airflow6.png">Part 6</a> 
-<a href="Airflow7.png">Part 7</a></p>
-<p><a>Data Project 10 - Working with a Avien Apache Kafka service for streaming data and real-time data pipelines</a> <a href="Kafka Producer.html">Part 1</a> <a href="Kafka Consumer.html">Part 2</a></p>
-<p><a href="https://beast-cancer-logistic-regression.onrender.com/">Data Project 11 - Deploying Beast Cancer Logistic Regression Model using FASTAPI for API endpoints and render.com as a hosting service</a></p>
-<p><a href="Big Data Preprocessing.html">Data Project 12 - Creating Scalable and Efficient Data Pipelines for "Big Data" using Spark Pipelines and the Tensorflow tf.data.Dataset API</a></p>
-<p><a>Data Project 13 - Data Modeling using ERD (Entity Relationship Diagrams) for Olympic Medal Data using Fact/Dimension Tables in Star/Snowflake Schemas</a>
-<a href="Star Schema.png">Part 1</a>    
-<a href="Snowflake Schema.png">Part 2</a>  
+      <!-- Multi-part: Animal NN -->
+      <div class="project-block">
+        <div class="project-row-inner">
+          <span class="project-num">20</span>
+          <div>
+            <div class="project-title">Animal Multi-class Classification Neural Network — TensorFlow & TensorBoard</div>
+            <div class="project-parts">
+              <a href="Animal Multi-class Classification Neural Network Using Tensorflow and TensorBoard.html">Notebook</a>
+              <a href="tb1.png">TB 1</a>
+              <a href="tb2.png">TB 2</a>
+              <a href="tb3.png">TB 3</a>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<p><a>Data Project 14 - MLflow for Machine Learning Experiment/Model Tracking and Deployment for Elastic Net Linear Regression</a>
-<a href="MLflow deployment.html">Part 1</a>    
-<a href="Mlflow1.png">Part 2</a>  
-<a href="Mlflow2.png">Part 3</a>  
-<a href="Mlflow3.png">Part 4</a>  
-<a href="Mlflow4.png">Part 5</a>  
-<a href="Mlflow5.png">Part 6</a>
-<a href="Mlflow6.png">Part 7</a>  
+      <!-- Multi-part: NLP -->
+      <div class="project-block">
+        <div class="project-row-inner">
+          <span class="project-num">21</span>
+          <div>
+            <div class="project-title">Tweet NLP Classification — Naive Bayes, Dense NN, LSTM, GRU, BiLSTM, Conv1D, TF Hub</div>
+            <div class="project-parts">
+              <a href="NLP Multiclass Classification.html">Notebook</a>
+              <a href="Tensorflow projector.png">Embedding Projector</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a class="project-row" href="Time series.html"><span class="project-num">22</span><span class="project-title">Time Series Modeling — Temperature & Climate (FF NN, LSTM, Conv1D, Uni/Multivariate)</span><span class="project-arrow">→</span></a>
+      <a class="project-row" href="Emissions Regression Model Development v3.html"><span class="project-num">23</span><span class="project-title">Methane Emissions Computer Vision Model — CNN (2023 Datathon)</span><span class="project-arrow">→</span></a>
+    </div>
+  </section>
+
+  <!-- DATA ENGINEERING -->
+  <section>
+    <p class="section-label">Data Engineering</p>
+    <div class="project-list">
+      <a class="project-row" href="Webscraping Real Estate Data with Beautiful Soup.html"><span class="project-num">01</span><span class="project-title">Webscraping Real Estate Data — Python BeautifulSoup</span><span class="project-arrow">→</span></a>
+      <a class="project-row" href="Python ETL script.html"><span class="project-num">02</span><span class="project-title">ETL Process on CSV, JSON & XML Files</span><span class="project-arrow">→</span></a>
+      <a class="project-row" href="Working with Apache Spark DataFrames using PySpark and Spark SQL.html"><span class="project-num">03</span><span class="project-title">Apache Spark DataFrames — PySpark & Spark SQL</span><span class="project-arrow">→</span></a>
+      <a class="project-row" href="Using Sci-Kit Learn Pipelines and Transformers.html"><span class="project-num">04</span><span class="project-title">Scikit-Learn Pipelines & Transformers for Data Preprocessing</span><span class="project-arrow">→</span></a>
+      <a class="project-row" href="Advanced SQL Querying on IBM DB2 DataBase.html"><span class="project-num">05</span><span class="project-title">Advanced SQL Querying on IBM DB2 with SQLAlchemy</span><span class="project-arrow">→</span></a>
+      <a class="project-row" href="Using CRUD Operations on a MongoDB Database with pymongo in Python.html"><span class="project-num">06</span><span class="project-title">CRUD Operations on MongoDB with pymongo</span><span class="project-arrow">→</span></a>
+      <a class="project-row" href="Using CRUD Operations on a DataStax Astra Cassandra based database in Python.html"><span class="project-num">07</span><span class="project-title">CRUD Operations on DataStax Astra Cassandra</span><span class="project-arrow">→</span></a>
+
+      <div class="project-block">
+        <div class="project-row-inner">
+          <span class="project-num">08</span>
+          <div>
+            <div class="project-title">Scheduling Cronjobs with Linux Shell & Bash</div>
+            <div class="project-parts">
+              <a href="Scheduling Cronjobs with Linux Shell & Bash to automate python scripts.html">Notebook</a>
+              <a href="cron.png">Cron</a>
+              <a href="stock2.png">Stock 2</a>
+              <a href="stock3.png">Stock 3</a>
+              <a href="stock4.png">Stock 4</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-block">
+        <div class="project-row-inner">
+          <span class="project-num">09</span>
+          <div>
+            <div class="project-title">Apache Airflow for Data Orchestration & Workflow Scheduling</div>
+            <div class="project-parts">
+              <a href="Airflow1.png">1</a>
+              <a href="Airflow2.png">2</a>
+              <a href="Airflow3.png">3</a>
+              <a href="Airflow4.png">4</a>
+              <a href="Airflow5.png">5</a>
+              <a href="Airflow6.png">6</a>
+              <a href="Airflow7.png">7</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-block">
+        <div class="project-row-inner">
+          <span class="project-num">10</span>
+          <div>
+            <div class="project-title">Apache Kafka Streaming — Real-Time Data Pipelines</div>
+            <div class="project-parts">
+              <a href="Kafka Producer.html">Producer</a>
+              <a href="Kafka Consumer.html">Consumer</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a class="project-row" href="https://beast-cancer-logistic-regression.onrender.com/" target="_blank"><span class="project-num">11</span><span class="project-title">FastAPI Deployment — Breast Cancer Logistic Regression on render.com</span><span class="project-arrow">→</span></a>
+      <a class="project-row" href="Big Data Preprocessing.html"><span class="project-num">12</span><span class="project-title">Scalable Big Data Pipelines — Spark Pipelines & TF Data API</span><span class="project-arrow">→</span></a>
+
+      <div class="project-block">
+        <div class="project-row-inner">
+          <span class="project-num">13</span>
+          <div>
+            <div class="project-title">Data Modeling — ERD, Fact/Dimension Tables, Star & Snowflake Schemas</div>
+            <div class="project-parts">
+              <a href="Star Schema.png">Star Schema</a>
+              <a href="Snowflake Schema.png">Snowflake Schema</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-block">
+        <div class="project-row-inner">
+          <span class="project-num">14</span>
+          <div>
+            <div class="project-title">MLflow — Experiment Tracking & Deployment for Elastic Net Regression</div>
+            <div class="project-parts">
+              <a href="MLflow deployment.html">Notebook</a>
+              <a href="Mlflow1.png">1</a>
+              <a href="Mlflow2.png">2</a>
+              <a href="Mlflow3.png">3</a>
+              <a href="Mlflow4.png">4</a>
+              <a href="Mlflow5.png">5</a>
+              <a href="Mlflow6.png">6</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEVOPS -->
+  <section>
+    <p class="section-label">DevOps</p>
+    <div class="project-list">
+      <a class="project-row" href="https://github.com/ktgster/Rental_ML_Docker" target="_blank">
+        <span class="project-num">01</span>
+        <span class="project-title">Rental Data Webscraper & ML Prediction — End-to-End FastAPI App in Docker</span>
+        <span class="project-arrow">→</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <p>Stephen Situ · Full Stack Data Professional · Calgary, AB</p>
+  </footer>
+
+</div>
 </body>
 </html>
-
-<h3>DevOps</h3>
-<a href="https://github.com/ktgster/Rental_ML_Docker">Devops Project 1 - Rental Data Webscraper/Model Prediction End to End Fast API application deployed using docker</a> 
-
-
 
 
 
