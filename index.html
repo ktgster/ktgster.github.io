@@ -604,6 +604,45 @@
     }
     .proj-tag:hover { background: rgba(0,255,136,0.1); border-color: var(--green); }
 
+    /* ── PROJECT ARCHIVE ── */
+    .archive {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--bg2);
+    }
+    .archive summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 18px;
+      font-size: 12px;
+      color: var(--muted);
+      transition: background 0.15s, color 0.15s;
+    }
+    .archive summary::-webkit-details-marker { display: none; }
+    .archive summary:hover { background: rgba(0,255,136,0.03); color: var(--text); }
+    .arch-prompt { color: var(--green); }
+    .arch-hint {
+      margin-left: auto;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      border: 1px solid rgba(0,255,136,0.2);
+      padding: 2px 10px;
+      border-radius: 2px;
+    }
+    .arch-hide { display: none; }
+    .archive[open] .arch-show { display: none; }
+    .archive[open] .arch-hide { display: inline; }
+    .archive[open] summary { border-bottom: 1px solid var(--border); }
+    .archive-body { padding: 28px 18px 8px; }
+    .arch-group { margin-bottom: 36px; }
+    .arch-group .sec-header { margin-bottom: 16px; }
+    .arch-group .sec-title { font-size: 11px; color: var(--text); }
+
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--border);
@@ -942,10 +981,23 @@
     </div>
   </section>
 
-  <!-- ══ GENERATIVE AI / LLM ══ -->
+  <!-- ══ PROJECT ARCHIVE (collapsed) ══ -->
   <section>
     <div class="sec-header">
       <span class="sec-num">06</span>
+      <span class="sec-title">Project Archive</span>
+      <div class="sec-line"></div>
+    </div>
+    <details class="archive">
+      <summary>
+        <span class="arch-prompt">$</span> ls ./projects
+        <span class="arch-hint"><span class="arch-show">show 43 projects ▾</span><span class="arch-hide">hide ▴</span></span>
+      </summary>
+      <div class="archive-body">
+  <!-- ══ GENERATIVE AI / LLM ══ -->
+  <div class="arch-group">
+    <div class="sec-header">
+      <span class="sec-num">›</span>
       <span class="sec-title">Generative AI / LLM</span>
       <div class="sec-line"></div>
     </div>
@@ -966,12 +1018,12 @@
         <span class="proj-arrow">→</span>
       </a>
     </div>
-  </section>
+  </div>
 
   <!-- ══ FULL STACK ══ -->
-  <section>
+  <div class="arch-group">
     <div class="sec-header">
-      <span class="sec-num">07</span>
+      <span class="sec-num">›</span>
       <span class="sec-title">Full Stack Development</span>
       <div class="sec-line"></div>
     </div>
@@ -996,12 +1048,12 @@
         <span class="proj-arrow">→</span>
       </a>
     </div>
-  </section>
+  </div>
 
   <!-- ══ DATA ANALYTICS / ML ══ -->
-  <section>
+  <div class="arch-group">
     <div class="sec-header">
-      <span class="sec-num">08</span>
+      <span class="sec-num">›</span>
       <span class="sec-title">Data Analytics / Data Science / ML</span>
       <div class="sec-line"></div>
     </div>
@@ -1070,12 +1122,12 @@
       <a class="proj-row" href="Time series.html"><span class="proj-num">22</span><span class="proj-name">Time Series Modeling — Temperature &amp; Climate (FF NN, LSTM, Conv1D, Uni/Multivariate)</span><span class="proj-arrow">→</span></a>
       <a class="proj-row" href="Emissions Regression Model Development v3.html"><span class="proj-num">23</span><span class="proj-name">Methane Emissions Computer Vision Model — CNN (2023 Datathon)</span><span class="proj-arrow">→</span></a>
     </div>
-  </section>
+  </div>
 
   <!-- ══ DATA ENGINEERING ══ -->
-  <section>
+  <div class="arch-group">
     <div class="sec-header">
-      <span class="sec-num">09</span>
+      <span class="sec-num">›</span>
       <span class="sec-title">Data Engineering</span>
       <div class="sec-line"></div>
     </div>
@@ -1169,12 +1221,12 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- ══ DEVOPS ══ -->
-  <section>
+  <div class="arch-group">
     <div class="sec-header">
-      <span class="sec-num">10</span>
+      <span class="sec-num">›</span>
       <span class="sec-title">DevOps</span>
       <div class="sec-line"></div>
     </div>
@@ -1185,6 +1237,10 @@
         <span class="proj-arrow">→</span>
       </a>
     </div>
+  </div>
+
+      </div>
+    </details>
   </section>
 
   <!-- FOOTER -->
