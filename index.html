@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stephen Situ — ML/AI Data Engineer</title>
-  <meta name="description" content="ML/AI Data Engineer portfolio for Stephen Situ">
+  <title>Stephen Situ — Senior ML/AI Engineer</title>
+  <meta name="description" content="Senior ML/AI Engineer portfolio for Stephen Situ">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
@@ -197,14 +197,16 @@
       opacity: 0;
       animation: fadeUp 0.6s forwards;
     }
-    section:nth-child(2) { animation-delay: 0.35s; }
-    section:nth-child(3) { animation-delay: 0.45s; }
-    section:nth-child(4) { animation-delay: 0.5s; }
-    section:nth-child(5) { animation-delay: 0.55s; }
-    section:nth-child(6) { animation-delay: 0.6s; }
-    section:nth-child(7) { animation-delay: 0.65s; }
-    section:nth-child(8) { animation-delay: 0.7s; }
-    section:nth-child(9) { animation-delay: 0.72s; }
+    section:nth-child(3)  { animation-delay: 0.3s; }
+    section:nth-child(4)  { animation-delay: 0.38s; }
+    section:nth-child(5)  { animation-delay: 0.45s; }
+    section:nth-child(6)  { animation-delay: 0.5s; }
+    section:nth-child(7)  { animation-delay: 0.55s; }
+    section:nth-child(8)  { animation-delay: 0.6s; }
+    section:nth-child(9)  { animation-delay: 0.65s; }
+    section:nth-child(10) { animation-delay: 0.7s; }
+    section:nth-child(11) { animation-delay: 0.72s; }
+    section:nth-child(12) { animation-delay: 0.74s; }
 
     .sec-header {
       display: flex;
@@ -231,6 +233,103 @@
       height: 1px;
       background: linear-gradient(to right, var(--border2), transparent);
     }
+
+    /* ── PROFILE ── */
+    .profile-card {
+      position: relative;
+      padding: 22px 24px 22px 26px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--bg2);
+      overflow: hidden;
+    }
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--green);
+      box-shadow: 0 0 10px var(--green);
+    }
+    .profile-prompt {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .profile-prompt span { color: var(--green); }
+    .profile-text {
+      font-size: 13.5px;
+      line-height: 1.85;
+      color: var(--text);
+      max-width: 80ch;
+    }
+    .profile-text strong { color: var(--white); font-weight: 500; }
+
+    /* ── EDUCATION ── */
+    .edu-card {
+      display: grid;
+      grid-template-columns: 48px 1fr auto;
+      align-items: start;
+      gap: 16px;
+      padding: 18px 20px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin-bottom: 8px;
+      background: var(--bg2);
+      transition: border-color 0.2s, background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .edu-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--cyan);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .edu-card:hover { border-color: var(--border2); background: var(--bg3); }
+    .edu-card:hover::before { opacity: 1; }
+    .edu-icon {
+      font-size: 22px;
+      text-align: center;
+      line-height: 1;
+      padding-top: 4px;
+      color: var(--cyan);
+    }
+    .edu-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 3px;
+    }
+    .edu-school { font-size: 11px; color: var(--cyan); margin-bottom: 4px; }
+    .edu-detail { font-size: 11px; color: var(--muted); }
+    .edu-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      padding-top: 4px;
+    }
+    .edu-year {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+    .edu-badge {
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+    .edu-badge.progress { color: var(--amber); border: 1px solid rgba(255,179,0,0.3); }
+    .edu-badge.done     { color: var(--green); border: 1px solid rgba(0,255,136,0.25); }
 
     /* ── CERT PANEL ── */
     .cert-group {
@@ -277,6 +376,8 @@
     .cg-data      .cert-group-header { border-left: 2px solid var(--blue); }
     .cg-ml        .cert-group-name { color: var(--pink); }
     .cg-ml        .cert-group-header { border-left: 2px solid var(--pink); }
+    .cg-genai     .cert-group-name { color: var(--green); }
+    .cg-genai     .cert-group-header { border-left: 2px solid var(--green); }
     .cg-analytics .cert-group-name { color: var(--purple); }
     .cg-analytics .cert-group-header { border-left: 2px solid var(--purple); }
 
@@ -304,6 +405,7 @@
     .cg-devops    .cert-item:hover { background: rgba(0,212,255,0.05); }
     .cg-data      .cert-item:hover { background: rgba(59,158,255,0.05); }
     .cg-ml        .cert-item:hover { background: rgba(255,80,136,0.05); }
+    .cg-genai     .cert-item:hover { background: rgba(0,255,136,0.05); }
     .cg-analytics .cert-item:hover { background: rgba(168,85,247,0.05); }
 
     .cert-indicator {
@@ -316,6 +418,7 @@
     .cg-devops    .cert-indicator { background: var(--cyan);  box-shadow: 0 0 6px var(--cyan);  }
     .cg-data      .cert-indicator { background: var(--blue);  box-shadow: 0 0 6px var(--blue);  }
     .cg-ml        .cert-indicator { background: var(--pink);  box-shadow: 0 0 6px var(--pink);  }
+    .cg-genai     .cert-indicator { background: var(--green); box-shadow: 0 0 6px var(--green); }
     .cg-analytics .cert-indicator { background: var(--purple);box-shadow: 0 0 6px var(--purple);}
 
     .cert-link-icon {
@@ -530,6 +633,8 @@
       .cert-items { grid-template-columns: 1fr; }
       .ach-card { grid-template-columns: 36px 1fr; }
       .ach-year { display: none; }
+      .edu-card { grid-template-columns: 36px 1fr; }
+      .edu-right { grid-column: 2; align-items: flex-start; flex-direction: row; padding-top: 0; }
       footer { flex-direction: column; gap: 8px; text-align: center; }
     }
   </style>
@@ -556,7 +661,7 @@
 
   <!-- HEADER -->
   <header>
-    <div class="header-tag">ML/AI Data Engineer</div>
+    <div class="header-tag">Senior ML/AI Engineer</div>
     <h1>
       <span class="first">Stephen</span>
       <span class="last">Situ</span>
@@ -568,6 +673,9 @@
       <span class="meta-chip">Generative AI</span>
       <span class="meta-chip">MLOps</span>
       <span class="meta-chip">LLM Systems</span>
+      <span class="meta-chip">Backend</span>
+      <span class="meta-chip">Frontend</span>
+      <span class="meta-chip">DevOps</span>
     </div>
     <div class="header-loc">
       <span>▸</span>
@@ -576,10 +684,60 @@
     </div>
   </header>
 
-<!-- ══ CERTIFICATIONS ══ -->
+<!-- ══ PROFILE ══ -->
 <section>
   <div class="sec-header">
     <span class="sec-num">01</span>
+    <span class="sec-title">Profile</span>
+    <div class="sec-line"></div>
+  </div>
+  <div class="profile-card">
+    <div class="profile-prompt"><span>$</span> cat profile.md</div>
+    <p class="profile-text">
+      <strong>Senior ML/AI Engineer</strong> who designs and deploys production machine learning and generative AI solutions for industrial and enterprise clients. Brings <strong>10 years of engineering experience</strong> and a background in Chemical Engineering, Applied Mathematics, and Statistics/Data Science to ML problems in complex physical systems. Strong data engineering and MLOps foundation on <strong>Databricks, Azure, and AWS</strong>, taking models from prototype to reliable production.
+    </p>
+  </div>
+</section>
+
+<!-- ══ EDUCATION ══ -->
+<section>
+  <div class="sec-header">
+    <span class="sec-num">02</span>
+    <span class="sec-title">Education</span>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="edu-card">
+    <div class="edu-icon">◇</div>
+    <div class="edu-body">
+      <div class="edu-title">MicroMasters Program in Statistics and Data Science</div>
+      <div class="edu-school">MITx — Massachusetts Institute of Technology</div>
+      <div class="edu-detail">Graduate-level credential · Probability, statistics, machine learning</div>
+    </div>
+    <div class="edu-right">
+      <span class="edu-year">Sep 2026 – Sep 2028</span>
+      <span class="edu-badge progress">In progress</span>
+    </div>
+  </div>
+
+  <div class="edu-card">
+    <div class="edu-icon">◆</div>
+    <div class="edu-body">
+      <div class="edu-title">BSc, Chemical Engineering</div>
+      <div class="edu-school">University of Calgary</div>
+      <div class="edu-detail">Minor in Applied Mathematics</div>
+    </div>
+    <div class="edu-right">
+      <span class="edu-year">2016</span>
+      <span class="edu-badge done">Graduated</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CERTIFICATIONS ══ -->
+<section>
+  <div class="sec-header">
+    <span class="sec-num">03</span>
     <span class="sec-title">Certifications</span>
     <div class="sec-line"></div>
   </div>
@@ -656,12 +814,12 @@
     </div>
   </div>
 
-  <!-- ML & GEN AI -->
+  <!-- MACHINE LEARNING -->
   <div class="cert-group cg-ml">
     <div class="cert-group-header">
       <span class="cert-group-icon">◈</span>
-      <span class="cert-group-name">Machine Learning &amp; Generative AI</span>
-      <span class="cert-group-count">7 certs</span>
+      <span class="cert-group-name">Machine Learning</span>
+      <span class="cert-group-count">4 certs</span>
     </div>
     <div class="cert-items">
       <a class="cert-item" href="https://www.credential.net/10f8e17c-b99f-47e9-bf38-4a2a181fb9e4" target="_blank">
@@ -676,6 +834,17 @@
       <a class="cert-item" href="https://credentials.databricks.com/2cd6e954-1e81-4448-af19-c59037903bb6#acc.ZocXFAr9" target="_blank">
         <span class="cert-indicator"></span>Databricks ML Professional<span class="cert-link-icon">↗</span>
       </a>
+    </div>
+  </div>
+
+  <!-- GENERATIVE AI -->
+  <div class="cert-group cg-genai">
+    <div class="cert-group-header">
+      <span class="cert-group-icon">✦</span>
+      <span class="cert-group-name">Generative AI</span>
+      <span class="cert-group-count">3 certs</span>
+    </div>
+    <div class="cert-items">
       <a class="cert-item" href="https://credentials.databricks.com/15ba0dc7-066e-4759-8023-90d0dc481a38#acc.GERNjSyQ" target="_blank">
         <span class="cert-indicator"></span>Databricks Generative AI Engineer<span class="cert-link-icon">↗</span>
       </a>
@@ -696,10 +865,10 @@
       <span class="cert-group-count">2 certs</span>
     </div>
     <div class="cert-items">
-      <a class="cert-item" href="https://www.coursera.org/account/accomplishments/professional-cert/2QJHUU84LRBP" target="_blank">
+      <a class="cert-item" href="https://www.coursera.org/account/accomplishments/professional-cert/A5VSGKLN2VCW" target="_blank">
         <span class="cert-indicator"></span>Google Data Analytics Professional<span class="cert-link-icon">↗</span>
       </a>
-      <a class="cert-item" href="https://www.coursera.org/account/accomplishments/professional-cert/A5VSGKLN2VCW" target="_blank">
+      <a class="cert-item" href="https://www.coursera.org/account/accomplishments/professional-cert/2QJHUU84LRBP" target="_blank">
         <span class="cert-indicator"></span>Google Advanced Data Analytics<span class="cert-link-icon">↗</span>
       </a>
     </div>
@@ -709,7 +878,7 @@
   <!-- ══ ACHIEVEMENTS ══ -->
   <section>
     <div class="sec-header">
-      <span class="sec-num">02</span>
+      <span class="sec-num">04</span>
       <span class="sec-title">Achievements</span>
       <div class="sec-line"></div>
     </div>
@@ -758,7 +927,7 @@
   <!-- ══ COMPETITIVE PROGRAMMING ══ -->
   <section>
     <div class="sec-header">
-      <span class="sec-num">03</span>
+      <span class="sec-num">05</span>
       <span class="sec-title">Competitive Programming</span>
       <div class="sec-line"></div>
     </div>
@@ -776,7 +945,7 @@
   <!-- ══ GENERATIVE AI / LLM ══ -->
   <section>
     <div class="sec-header">
-      <span class="sec-num">04</span>
+      <span class="sec-num">06</span>
       <span class="sec-title">Generative AI / LLM</span>
       <div class="sec-line"></div>
     </div>
@@ -802,7 +971,7 @@
   <!-- ══ FULL STACK ══ -->
   <section>
     <div class="sec-header">
-      <span class="sec-num">05</span>
+      <span class="sec-num">07</span>
       <span class="sec-title">Full Stack Development</span>
       <div class="sec-line"></div>
     </div>
@@ -832,7 +1001,7 @@
   <!-- ══ DATA ANALYTICS / ML ══ -->
   <section>
     <div class="sec-header">
-      <span class="sec-num">06</span>
+      <span class="sec-num">08</span>
       <span class="sec-title">Data Analytics / Data Science / ML</span>
       <div class="sec-line"></div>
     </div>
@@ -906,7 +1075,7 @@
   <!-- ══ DATA ENGINEERING ══ -->
   <section>
     <div class="sec-header">
-      <span class="sec-num">07</span>
+      <span class="sec-num">09</span>
       <span class="sec-title">Data Engineering</span>
       <div class="sec-line"></div>
     </div>
@@ -1005,7 +1174,7 @@
   <!-- ══ DEVOPS ══ -->
   <section>
     <div class="sec-header">
-      <span class="sec-num">08</span>
+      <span class="sec-num">10</span>
       <span class="sec-title">DevOps</span>
       <div class="sec-line"></div>
     </div>
@@ -1024,10 +1193,9 @@
       <div class="status-dot"></div>
       <span>available for opportunities</span>
     </div>
-    <span>Stephen Situ · Calgary, AB · ML/AI Data Engineer</span>
+    <span>Stephen Situ · Calgary, AB · Senior ML/AI Engineer</span>
   </footer>
 
 </div>
 </body>
 </html>
-
